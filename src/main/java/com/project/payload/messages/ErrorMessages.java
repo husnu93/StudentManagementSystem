@@ -22,6 +22,8 @@ public class ErrorMessages {
 
     public static final String ALREADY_EXIST_ADVISOR_MESSAGE = "Advisor Teacher with id %s is already exists";
 
-
+    public static final String EDUCATION_TERM_IS_ALREADY_EXIST_BY_TERM_AND_YEAR_MESSAGE = "ERROR : EducationTerm with Term and Year is already exist";
+    public static final String EDUCATION_END_DATE_IS_EARLIER_THAN_START_DATE = "Error: The end date cannot be earlier than start date";
+    public static final String EDUCATION_START_DATE_IS_EARLIER_THAN_LAST_REGISTRATION_DATE = "Error: The start date cannot be earlier than the last registration date ";
 
 }

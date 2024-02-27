@@ -2,6 +2,7 @@ package com.project.payload.mappers;
 
 import com.project.entity.concretes.user.User;
 import com.project.payload.request.abstracts.BaseUserRequest;
+import com.project.payload.request.user.StudentRequest;
 import com.project.payload.request.user.TeacherRequest;
 import com.project.payload.request.user.UserRequest;
 import com.project.payload.response.user.StudentResponse;
@@ -118,7 +119,7 @@ public class UserMapper {
 
     }
 
-    public User mapteacherRequsetToUpdatedUser(TeacherRequest userRequest,Long userId){
+    public User mapTeacherRequsetToUpdatedUser(TeacherRequest userRequest,Long userId){
         return User.builder()
                 .id(userId)
                 .username(userRequest.getUsername())
@@ -138,6 +139,24 @@ public class UserMapper {
 
     }
 
+
+    public User mapStudentRequestToUser(StudentRequest studentRequest){
+        return User.builder()
+                .fatherName(studentRequest.getFatherName())
+                .motherName(studentRequest.getMotherName())
+                .birthDay(studentRequest.getBirthDay())
+                .birthPlace(studentRequest.getBirthPlace())
+                .name(studentRequest.getName())
+                .surname(studentRequest.getSurname())
+                .password(studentRequest.getPassword())
+                .username(studentRequest.getUsername())
+                .ssn(studentRequest.getSsn())
+                .email(studentRequest.getEmail())
+                .phoneNumber(studentRequest.getPhoneNumber())
+                .gender(studentRequest.getGender())
+                .built_in(studentRequest.getBuiltIn())
+                .build();
+    }
 
 
 }

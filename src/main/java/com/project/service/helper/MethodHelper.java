@@ -48,7 +48,7 @@ public class MethodHelper {
        return user;
     }
 
-    // Advisor Kontrolu
+    // Gelen user Advisor mı  Kontrolu
     public void checkAdvisor(User user){
         if (Boolean.FALSE.equals(user.getIsAdvisor())){
             throw new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_ADVISOR_MESSAGE,user.getId()));
