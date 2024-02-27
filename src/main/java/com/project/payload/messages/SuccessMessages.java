@@ -13,11 +13,13 @@ public class SuccessMessages {
     public static final String USER_UPDATE = "Your information has been updated successfully ";
     public static final String USER_UPDATE_MESSAGE = "User is Updated Successfully";
     public static final String TEACHER_SAVED = "Teacher is Saved Successfully";
+    public static final String STUDENT_SAVED = "Student is Saved Successfully";
 
     public static final String ADVISOR_TEACHER_SAVED = "Advisor teacher saved successfully";
 
     public static final String ADVISOR_TEACHER_DELETED = "advisor teacher is deleted successfully";
 
 
+    public static final String STUDENT_UPDATE = "Student is updated succesfully";
     public static final String TEACHER_UPDATE = "Teacher is updated  successfully ";
 }

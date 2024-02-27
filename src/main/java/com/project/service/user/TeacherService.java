@@ -46,7 +46,7 @@ public class TeacherService {
         //!!! DTO -> POJO
         User  teacher = userMapper.mapTeacherRequestToUser(teacherRequest);
 
-        // rolu setledik
+        // rolu setledik dto da olup da pojo da olmadığı için rolu ekledik
 
         teacher.setUserRole(userRoleService.getUserRole(RoleType.TEACHER));
         // TODO : lesson program setleme işlemi:
@@ -82,7 +82,7 @@ public class TeacherService {
 
         //DTO -> POJO
 
-        User updatedTeacher =  userMapper.mapteacherRequsetToUpdatedUser(teacherRequest,userId);
+        User updatedTeacher =  userMapper.mapTeacherRequsetToUpdatedUser(teacherRequest,userId);
 
         updatedTeacher.setPassword(passwordEncoder.encode(teacherRequest.getPassword()));
 
@@ -101,6 +101,8 @@ public class TeacherService {
 
     public List<StudentResponse> getAllStudentByAdvisorUsername(String userName) {
 
+
+        // önce böyle bi username ile birisi var mı kontrolu
       User teacher =   methodHelper.isUserExistByUsername(userName);
         //!!!! isAdvisor kontrolü
         methodHelper.checkAdvisor(teacher);
