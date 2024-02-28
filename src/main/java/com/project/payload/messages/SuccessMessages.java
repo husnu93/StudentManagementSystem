@@ -20,6 +20,8 @@ public class SuccessMessages {
     public static final String ADVISOR_TEACHER_DELETED = "advisor teacher is deleted successfully";
 
 
+    public static final String EDUCATION_TERM_DELETE = "Education Term is Deleted Successfully";
     public static final String STUDENT_UPDATE = "Student is updated succesfully";
     public static final String TEACHER_UPDATE = "Teacher is updated  successfully ";
+    public static final String EDUCATION_TERM_SAVED = "Education Term is Saved Successfully";
 }
