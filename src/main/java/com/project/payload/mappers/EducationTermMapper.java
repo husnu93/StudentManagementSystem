@@ -3,7 +3,11 @@ package com.project.payload.mappers;
 import com.project.entity.concretes.business.EducationTerm;
 import com.project.payload.request.business.EducationTermRequest;
 import com.project.payload.response.business.EducationTermResponse;
+import lombok.Data;
+import org.springframework.stereotype.Component;
 
+@Data
+@Component
 public class EducationTermMapper {
 
     //!!! DTO --> POJO
@@ -28,6 +32,16 @@ public class EducationTermMapper {
                 .lastRegistrationDate(educationTerm.getLastRegistrationDate())
                 .build();
     }
+
+    //!!! Update kisminda kullanilacak
+    public EducationTerm mapEducationTermRequestToUpdatedEducationTerm(Long id,EducationTermRequest educationTermRequest){
+
+        return mapEducationTermRequestToEducationTerm(educationTermRequest)
+                .toBuilder()
+                .id(id)
+                .build();
+    }
+
 
 
 }

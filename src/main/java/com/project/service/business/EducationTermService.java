@@ -111,7 +111,7 @@ public class EducationTermService {
     public Page<EducationTermResponse> getAllEducationTermsByPage(int page, int size, String sort, String type) {
 
         Pageable pageable = pageableHelper.getPageableWithProperties(page, size, sort, type);
-
+        // pageable databaseden pageable yapıda alınması için gerekli bir method getall repodan yoksa tüm verileri çeker dbyı yorar
         return educationTermRepository.findAll(pageable)
                 .map(educationTermMapper::mapEducationTermToEducationTermResponse);
     }
@@ -129,5 +129,19 @@ public class EducationTermService {
                 .httpStatus(HttpStatus.OK)
                 .build();
 
+    }
+
+    public ResponseMessage<EducationTermResponse> updateEducationTermById(Long id, EducationTermRequest educationTermRequest) {
+        //!!! id var mi ??
+        isEducationTermExist(id);
+        //!!! tarihler arasinda cakisma var mi ??
+        validateEducationTermDates(educationTermRequest);
+        EducationTerm educationTermUpdated =
+                educationTermRepository.save(educationTermMapper.mapEducationTermRequestToUpdatedEducationTerm(id, educationTermRequest));
+        return ResponseMessage.<EducationTermResponse>builder()
+                .message(SuccessMessages.EDUCATION_TERM_UPDATE)
+                .httpStatus(HttpStatus.OK)
+                .object(educationTermMapper.mapEducationTermToEducationTermResponse(educationTermUpdated))
+                .build();
     }
 }

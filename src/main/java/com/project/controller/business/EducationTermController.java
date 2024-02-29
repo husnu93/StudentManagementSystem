@@ -61,7 +61,13 @@ public class EducationTermController {
     public ResponseMessage<?> deleteEducationTermById(@PathVariable Long id){
         return educationTermService.deleteEducationTermById(id);
     }
+    @PutMapping("/update/{id}")  // http://localhost:8080/educationTerms/update/1 + JSON
+    @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER')")
+    public ResponseMessage<EducationTermResponse> updateEducationTermById(@PathVariable Long id,
+                                                                          @RequestBody @Valid EducationTermRequest educationTermRequest) {
 
+        return educationTermService.updateEducationTermById(id, educationTermRequest);
+    }
 
 
 }
