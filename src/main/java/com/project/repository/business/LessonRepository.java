@@ -4,6 +4,13 @@ import com.project.entity.concretes.business.Lesson;
 import com.project.entity.concretes.business.LessonProgram;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+import java.util.Optional;
+
 public interface LessonRepository extends JpaRepository<Lesson,Long> {
     boolean existsLessonByLessonNameEqualsIgnoreCase(String lessonName);
+
+    Optional<Lesson> getLessonByLessonName(String lessonName);
+
+    boolean existsByLessonName(String lessonName);
 }
