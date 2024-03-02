@@ -26,8 +26,11 @@ public class ErrorMessages {
     public static final String EDUCATION_END_DATE_IS_EARLIER_THAN_START_DATE = "Error: The end date cannot be earlier than start date";
     public static final String EDUCATION_START_DATE_IS_EARLIER_THAN_LAST_REGISTRATION_DATE = "Error: The start date cannot be earlier than the last registration date ";
 
+    public static final String TIME_NOT_VALID_MESSAGE = "Error: incorrect time";
+    public static final String NOT_FOUND_LESSON_IN_LIST = "Error: Lesson not found in the list";
     public static final String EDUCATION_TERM_CONFLICT_MESSAGE ="Error: There is a conflict regarding the dates of the education terms";
 
+    public static final String NOT_FOUND_LESSON_PROGRAM_MESSAGE = "ERROR : Lesson program with this field %s not found";
     public static final String LESSON_ALREADY_EXIST_WITH_LESSON_NAME = "Lesson with Lesson Name %s is already exist";
     public static final String EDUCATION_TERM_NOT_FOUND_MESSAGE = "Error : Education Term with id %s not found";
 

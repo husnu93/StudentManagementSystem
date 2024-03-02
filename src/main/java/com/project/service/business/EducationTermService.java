@@ -144,4 +144,11 @@ public class EducationTermService {
                 .object(educationTermMapper.mapEducationTermToEducationTermResponse(educationTermUpdated))
                 .build();
     }
+
+
+
+    public EducationTerm findEducationTermById(Long id) {
+
+        return isEducationTermExist(id);
+    }
 }
