@@ -111,24 +111,36 @@ public class LessonProgramService {
     }
 
 
-    public ResponseMessage deleteById(Long id) {
+  //  public ResponseMessage deleteById(Long id) {
+//
+  //      isLessonProgramExistById(id);
+//
+  //       lessonProgramRepository.deleteById(id);
+//
+  //       return ResponseMessage.builder()
+  //               .message(SuccessMessages.LESSON_PROGRAM_DELETED)
+  //               .httpStatus(HttpStatus.OK)
+  //               .build();
+//
+//
+  //  }
 
+
+    public ResponseMessage deleteLessonProgramById(Long id) {
         isLessonProgramExistById(id);
-
-         lessonProgramRepository.deleteById(id);
-
-         return ResponseMessage.builder()
-                 .message(SuccessMessages.LESSON_PROGRAM_DELETED)
-                 .httpStatus(HttpStatus.OK)
-                 .build();
-
-
+        lessonProgramRepository.deleteById(id);
+        return ResponseMessage.builder()
+                .message(SuccessMessages.LESSON_PROGRAM_DELETE)
+                .httpStatus(HttpStatus.OK)
+                .build();
     }
 
-    public Page<LessonProgramResponse> getAllLessonProgramByPage(int page, int size, String sort, String type) {
-        Pageable pageable = pageableHelper.getPageableWithProperties(page,size,sort,type);
+  public Page<LessonProgramResponse> getAllLessonProgramByPage(int page, int size, String sort, String type) {
+      Pageable pageable = pageableHelper.getPageableWithProperties(page,size,sort,type);
 
-        return lessonProgramRepository.findAll(pageable)
-                .map(lessonProgramMapper::mapLessonProgramToLessonProgramResponse);
-    }
+      return lessonProgramRepository.findAll(pageable)
+              .map(lessonProgramMapper::mapLessonProgramToLessonProgramResponse);
+  }
+
+
 }

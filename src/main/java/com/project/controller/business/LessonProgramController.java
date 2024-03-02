@@ -61,26 +61,46 @@ public class LessonProgramController {
 
     // Odev : delete -->> /delete/{id}
 
-    @DeleteMapping("/delete/{id}")
+//   @DeleteMapping("/delete/{id}")
+//   @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','ASSISTANT_MANAGER')")
+//   public ResponseMessage deleteById(@PathVariable Long id){
+//       return lessonProgramService.deleteById(id);
+//   }
+
+
+    @DeleteMapping("/delete/{id}") //http://localhost:8080/lessonPrograms/delete/1
     @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','ASSISTANT_MANAGER')")
-    public ResponseMessage deleteById(@PathVariable Long id){
-        return lessonProgramService.deleteById(id);
+    public ResponseMessage deleteLessonProgramById(@PathVariable Long id){
+        return lessonProgramService.deleteLessonProgramById(id);
     }
+
+
 
 
     // get AllWithPage -->> / getAllLessonProgramByPage
 
-    @GetMapping("/getAllLessonProgramByPage")// http:localhost:8080/LessonProgram/getAllLessonProgramByPage
-    @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','ASSISTANT_MANAGER','TEACHER')")
-    public Page<LessonProgramResponse> getAllLessonProgramByPage(
-            @RequestParam(value = "page", defaultValue = "0") int page,
-            @RequestParam(value = "size",defaultValue = "10") int size,
-            @RequestParam(value = "sort",defaultValue = "startDate") String sort,
-            @RequestParam(value = "type",defaultValue = "desc") String type
+///   @GetMapping("/getAllLessonProgramByPage")// http:localhost:8080/LessonProgram/getAllLessonProgramByPage
+///   @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','ASSISTANT_MANAGER','TEACHER')")
+///   public Page<LessonProgramResponse> getAllLessonProgramByPage(
+///           @RequestParam(value = "page", defaultValue = "0") int page,
+///           @RequestParam(value = "size",defaultValue = "10") int size,
+///           @RequestParam(value = "sort",defaultValue = "startDate") String sort,
+///           @RequestParam(value = "type",defaultValue = "desc") String type
 
-    ){
+///   ){
+///       return lessonProgramService.getAllLessonProgramByPage(page,size,sort,type);
+///   }
+
+    @GetMapping("/getAllLessonProgramByPage") // http://localhost:8080/lessonPrograms/getAllLessonProgramByPage?page=0&size=1&sort=id&type=desc
+    @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','ASSISTANT_MANAGER','TEACHER','STUDENT')")
+    public Page<LessonProgramResponse> getAllLessonProgramByPage (
+            @RequestParam(value = "page") int page,
+            @RequestParam(value = "size") int size,
+            @RequestParam(value = "sort") String sort,
+            @RequestParam(value = "type") String type){
         return lessonProgramService.getAllLessonProgramByPage(page,size,sort,type);
     }
+
 
     // bir öğretmenin kendine ait lesson programları getiriyor
     @GetMapping("/getAllLessonProgramByTeacher")
@@ -88,6 +108,15 @@ public class LessonProgramController {
     public Set<LessonProgramResponse> getAllLessonProgramByTeacherUsername(HttpServletRequest httpServletRequest){
         return lessonProgramService.getAllLessonProgramByUser(httpServletRequest);
     }
+
+
+
+
+
+
+
+
+
 
 
 }
