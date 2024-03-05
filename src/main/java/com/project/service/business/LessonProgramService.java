@@ -3,6 +3,9 @@ package com.project.service.business;
 import com.project.entity.concretes.business.EducationTerm;
 import com.project.entity.concretes.business.Lesson;
 import com.project.entity.concretes.business.LessonProgram;
+import com.project.entity.concretes.user.User;
+import com.project.entity.enums.RoleType;
+import com.project.exception.BadRequestException;
 import com.project.exception.ResourceNotFoundException;
 import com.project.payload.mappers.LessonProgramMapper;
 import com.project.payload.messages.ErrorMessages;
@@ -11,6 +14,7 @@ import com.project.payload.request.business.LessonProgramRequest;
 import com.project.payload.response.business.LessonProgramResponse;
 import com.project.payload.response.business.ResponseMessage;
 import com.project.repository.business.LessonProgramRepository;
+import com.project.service.helper.MethodHelper;
 import com.project.service.helper.PageableHelper;
 import com.project.service.validator.DateTimeValidator;
 import lombok.RequiredArgsConstructor;
@@ -33,6 +37,7 @@ public class LessonProgramService {
     private final DateTimeValidator dateTimeValidator;
     private final LessonProgramMapper lessonProgramMapper;
     private final PageableHelper pageableHelper;
+    private final MethodHelper methodHelper;
 
    
 
@@ -143,4 +148,41 @@ public class LessonProgramService {
   }
 
 
+    public Set<LessonProgramResponse> getByTeacherId(Long teacherId) {
+        User teacher =  methodHelper.isUserExist(teacherId);
+            methodHelper.checkRole(teacher, RoleType.TEACHER);
+
+
+            return lessonProgramRepository.findByUsers_IdEquals(teacherId)
+                    .stream()
+                    .map(lessonProgramMapper::mapLessonProgramToLessonProgramResponse)
+                    .collect(Collectors.toSet());
+    }
+
+    // bu iki methodu tek methoda indirebiliriz tek fark role type
+
+
+    public Set<LessonProgramResponse> getByStudentId(Long studentId) {
+        User student =  methodHelper.isUserExist(studentId);
+        methodHelper.checkRole(student, RoleType.STUDENT);
+
+
+        return lessonProgramRepository.findByUsers_IdEquals(studentId)
+                .stream()
+                .map(lessonProgramMapper::mapLessonProgramToLessonProgramResponse)
+                .collect(Collectors.toSet());
+    }
+
+
+    // teacherservice için yazıldı
+    public Set<LessonProgram> getLessonProgramById(Set<Long> lessonIdSet){
+      Set<LessonProgram> lessonPrograms =   lessonProgramRepository.
+              getLessonProgramByLessonProgramIdList(lessonIdSet);
+
+        if (lessonPrograms.isEmpty()){
+            throw new BadRequestException(ErrorMessages.NOT_FOUND_LESSON_PROGRAM_MESSAGE_WITHOUT_ID_INFO);
+
+        }
+        return lessonPrograms;
+    }
 }

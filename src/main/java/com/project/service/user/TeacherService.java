@@ -14,6 +14,7 @@ import com.project.payload.response.user.TeacherResponse;
 import com.project.payload.response.user.UserResponse;
 import com.project.repository.user.UserRepository;
 import com.project.repository.user.UserRoleRepository;
+import com.project.service.business.LessonProgramService;
 import com.project.service.helper.MethodHelper;
 import com.project.service.validator.UniquePropertyValidator;
 import lombok.RequiredArgsConstructor;
@@ -35,9 +36,11 @@ public class TeacherService {
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
     private final MethodHelper methodHelper;
+    private final LessonProgramService lessonProgramService;
     public ResponseMessage<TeacherResponse> saveTeacher(TeacherRequest teacherRequest) {
 
-        //ToDo : Lesson program kontrolu burda getiriyoruz id ile aşagıda setleme yapıoruz
+        lessonProgramService.getLessonProgramById(teacherRequest.getLessonsIdList());
+
 
         //!!! unique konntrolu
         uniquePropertyValidator.checkDuplicate(teacherRequest.getUsername(),teacherRequest.getSsn()
@@ -49,7 +52,8 @@ public class TeacherService {
         // rolu setledik dto da olup da pojo da olmadığı için rolu ekledik
 
         teacher.setUserRole(userRoleService.getUserRole(RoleType.TEACHER));
-        // TODO : lesson program setleme işlemi:
+
+        lessonProgramService.getLessonProgramById(teacherRequest.getLessonsIdList());
 
         teacher.setPassword(passwordEncoder.encode(teacherRequest.getPassword()));
 
