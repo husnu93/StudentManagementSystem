@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder(toBuilder = true)
 public class LessonResponse {
 
+    
     private Long lessonId;
     private String lessonName;
     private int creditScore;
