@@ -32,6 +32,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     List<User> findByAdvisorTeacherId(Long id);
 
+
     @Query("SELECT u FROM USER u WHERE u.isAdvisor = ?1")
     List<User> findAllByAdvisor(Boolean aTrue);
 
