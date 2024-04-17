@@ -20,7 +20,6 @@ public class UserRoleService {
         return userRoleRepository.findByEnumRoleEquals(roleType).orElseThrow(()->
                 new ResourceNotFoundException(ErrorMessages.ROLE_NOT_FOUND));
     }
-
     public List<UserRole> getAllUserRole(){
         return userRoleRepository.findAll();
     }
