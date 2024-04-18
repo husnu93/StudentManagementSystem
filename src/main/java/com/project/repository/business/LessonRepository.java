@@ -11,6 +11,6 @@ public interface LessonRepository extends JpaRepository<Lesson,Long> {
     boolean existsLessonByLessonNameEqualsIgnoreCase(String lessonName);
 
     Optional<Lesson> getLessonByLessonName(String lessonName);
-
+sdf
     boolean existsByLessonName(String lessonName);
 }
