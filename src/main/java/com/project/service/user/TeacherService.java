@@ -57,7 +57,6 @@ public class TeacherService {
 
         teacher.setPassword(passwordEncoder.encode(teacherRequest.getPassword()));
 
-
         if (teacherRequest.getIsAdvisorTeacher()){
             teacher.setIsAdvisor(Boolean.TRUE);
         }else teacher.setIsAdvisor(Boolean.FALSE);
