@@ -21,8 +21,6 @@ import java.util.List;
 public class TeacherController {
 
     private final TeacherService teacherService;
-
-
     
   @PostMapping("/save") // http://localhost:8080/teacher/save + POST + JSON
   @PreAuthorize("hasAnyAuthority('ADMIN')")
