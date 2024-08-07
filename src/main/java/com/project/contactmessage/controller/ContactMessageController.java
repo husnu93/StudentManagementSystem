@@ -21,6 +21,7 @@ public class ContactMessageController {
 
     private final ContactMessageService contactMessageService;
 
+
     @PostMapping("/save") // http://localhost:8080/contactMessages/save + POST + JSON
     public ResponseMessage<ContactMessageResponse> save(@Valid @RequestBody ContactMessageRequest contactMessageRequest){
         return  contactMessageService.save(contactMessageRequest);
