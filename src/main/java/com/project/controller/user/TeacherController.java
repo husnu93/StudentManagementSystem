@@ -45,8 +45,6 @@ public class TeacherController {
       return teacherService.getAllStudentByAdvisorUsername(userName);
     }
 
-
-
     @PatchMapping("/saveAdvisorTeacher/{teacherId}")//http://localhost:8080/teacher/saveAdvisorTeacher/1
     @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','ASSISTANT_MANAGER')")
   public ResponseMessage<UserResponse> saveAdvisorTeacher(@PathVariable Long teacherId){
