@@ -29,6 +29,7 @@ public class TeacherController {
   }
 
 
+    g
   @PutMapping("/update/{userId}") //http://localhost:8080/teacher/update/1 + PUT + JSON
   @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','ASSISTANT_MANAGER')")
     public ResponseMessage<TeacherResponse> uptadeTeacherForManagers(@RequestBody @Valid TeacherRequest teacherRequest,
