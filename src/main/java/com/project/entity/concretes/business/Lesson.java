@@ -27,6 +27,7 @@ public class Lesson {
 
     private Boolean isCompulsory;
 
+    
     @ManyToMany
     @JsonIgnore
     private Set<LessonProgram> lessonPrograms;
