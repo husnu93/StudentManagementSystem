@@ -1,6 +1,7 @@
 package com.project.entity.enums;
 
-public enum Note {
+public enum Note {  
+    
 
     AA,BA,BB,CB,CC,DC,DD,DZ,FF
 }
